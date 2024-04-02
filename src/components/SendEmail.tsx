@@ -5,9 +5,7 @@ import { Input } from "./ui/input";
 import SendEmailButton from "./SendEmailButton";
 
 const SendEmail = () => {
-  const [destination, setDestination] = useState<{ ToAddresses: string[] }>({
-    ToAddresses: [],
-  });
+  const [recipients, setRecipients] = useState<string[]>([]);
 
   return (
     <div className="flex space-x-[8px]">
@@ -15,12 +13,10 @@ const SendEmail = () => {
         type="email"
         placeholder="Email Address"
         className="w-96"
-        value={destination.ToAddresses[0] ?? ""}
-        onChange={(event) =>
-          setDestination({ ToAddresses: [event.target.value] })
-        }
+        value={recipients}
+        onChange={(event) => setRecipients([event.target.value])}
       />
-      <SendEmailButton Destination={destination} />
+      <SendEmailButton recipients={recipients} />
     </div>
   );
 };
