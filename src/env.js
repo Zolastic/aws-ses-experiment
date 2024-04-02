@@ -12,11 +12,15 @@ export const env = createEnv({
       .url()
       .refine(
         (str) => !str.includes("YOUR_MYSQL_URL_HERE"),
-        "You forgot to change the default URL"
+        "You forgot to change the default URL",
       ),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    AWS_SES_ACCESS_KEY_ID: z.string(),
+    AWS_SES_SECRET_ACCESS_KEY: z.string(),
+    AWS_SES_REGION: z.string(),
+    SENDER_EMAIL: z.string(),
   },
 
   /**
@@ -26,6 +30,10 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_AWS_SES_ACCESS_KEY_ID: z.string(),
+    NEXT_PUBLIC_AWS_SES_SECRET_ACCESS_KEY: z.string(),
+    NEXT_PUBLIC_AWS_SES_REGION: z.string(),
+    NEXT_PUBLIC_SENDER_EMAIL: z.string(),
   },
 
   /**
@@ -35,6 +43,19 @@ export const env = createEnv({
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
+
+    AWS_SES_ACCESS_KEY_ID: process.env.AWS_SES_ACCESS_KEY_ID,
+    AWS_SES_SECRET_ACCESS_KEY: process.env.AWS_SES_SECRET_ACCESS_KEY,
+    AWS_SES_REGION: process.env.AWS_SES_REGION,
+    SENDER_EMAIL: process.env.SENDER_EMAIL,
+
+    NEXT_PUBLIC_AWS_SES_ACCESS_KEY_ID:
+      process.env.NEXT_PUBLIC_AWS_SES_ACCESS_KEY_ID,
+    NEXT_PUBLIC_AWS_SES_SECRET_ACCESS_KEY:
+      process.env.NEXT_PUBLIC_AWS_SES_SECRET_ACCESS_KEY,
+    NEXT_PUBLIC_AWS_SES_REGION: process.env.NEXT_PUBLIC_AWS_SES_REGION,
+    NEXT_PUBLIC_SENDER_EMAIL: process.env.NEXT_PUBLIC_SENDER_EMAIL,
+
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
